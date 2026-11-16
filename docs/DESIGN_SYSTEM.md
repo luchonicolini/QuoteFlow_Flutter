@@ -62,3 +62,6 @@ Support light, dark and system preference; high-contrast device settings where a
 
 ## Design quality gate
 Prototype actual phone widths (360, 393, 412dp), large text and dark mode; web approval at 320, 375, 768 and 1280 CSS px. Audit all states including loading, error, empty, expired, revoked and rejected.
+
+## Product-grade art direction and screen acceptance
+The detailed direction, anti-generic UI rules, screen workflow, benchmark Home screen and mandatory acceptance checklist are in [PRODUCT_DESIGN_QUALITY.md](PRODUCT_DESIGN_QUALITY.md). This document is normative for every Flutter UI PR. Avoid copying reference products; use them only as quality benchmarks.
