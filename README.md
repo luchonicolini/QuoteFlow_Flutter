@@ -48,6 +48,7 @@ Initial hypothesis: solo web designers, developers and creative freelancers who 
 - [Design system: Lime & Graphite](docs/DESIGN_SYSTEM.md)
 - [Milestones and validation gates](docs/ROADMAP.md)
 - [Engineering standards and agent instructions](AGENTS.md)
+- [Flutter libraries and installed agent skills](docs/FLUTTER_TOOLKIT.md)
 - [Implementation handoff for coding agents](docs/IMPLEMENTATION_BRIEF.md)
 - [Research and validation plan](docs/VALIDATION.md)
 
