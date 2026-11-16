@@ -54,3 +54,9 @@ Validation 1–2 weeks; engineering MVP 5–8 weeks for one developer depending 
 
 ## Project management
 Create milestone issues only after actual implementation scope is ratified. Each implementation PR must document test evidence, schema changes and security implications.
+
+## Visual quality gate before Phase 1 screen implementation
+- [ ] Prepare Home/Overview visual reference at 393dp in light and dark mode, with populated/empty states.
+- [ ] Obtain owner approval before treating it as the project's canonical visual benchmark.
+- [ ] Build a minimal component inventory and record states/tokens using [PRODUCT_DESIGN_QUALITY.md](PRODUCT_DESIGN_QUALITY.md).
+- [ ] During Flutter implementation, capture emulator screenshots and compare them to approved references; record tests, accessibility and deviations.
