@@ -43,3 +43,6 @@ Complex CRM, fiscal billing, AI data extraction, payment processing, auto-messag
 
 ## Ownership and validation
 Commercial demand is not yet validated. Do not turn hypothetical pricing/research claims into assertions of confirmed demand.
+
+## Local agent skills and dependency research
+Before any Flutter implementation, inspect [docs/FLUTTER_TOOLKIT.md](docs/FLUTTER_TOOLKIT.md) and match the task to the corresponding `.agents/skills/*/SKILL.md` playbook. Use only relevant skills; don't install external scripts without reviewing source/license. Flutter libraries are **recommended**, not installed, until a real `pubspec.yaml` is created and analyzed.
