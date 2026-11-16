@@ -46,3 +46,6 @@ Commercial demand is not yet validated. Do not turn hypothetical pricing/researc
 
 ## Local agent skills and dependency research
 Before any Flutter implementation, inspect [docs/FLUTTER_TOOLKIT.md](docs/FLUTTER_TOOLKIT.md) and match the task to the corresponding `.agents/skills/*/SKILL.md` playbook. Use only relevant skills; don't install external scripts without reviewing source/license. Flutter libraries are **recommended**, not installed, until a real `pubspec.yaml` is created and analyzed.
+
+## Product-grade visual quality (mandatory)
+Read [docs/PRODUCT_DESIGN_QUALITY.md](docs/PRODUCT_DESIGN_QUALITY.md) before designing or implementing any screen. Treat its four-stage workflow and definition of done as acceptance criteria: product-design spec, faithful Flutter implementation, emulator screenshot comparison, accessibility/edge-state polish. Do not claim a screen is visually verified without actual evidence. The first Home mockup must be reviewed by the owner before becoming the approved reference.
