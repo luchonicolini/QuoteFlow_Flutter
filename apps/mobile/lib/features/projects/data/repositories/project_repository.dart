@@ -1,0 +1,5 @@
+import '../../domain/entities/project.dart';
+
+abstract interface class ProjectRepository {
+  Future<List<Project>> getProjects();
+}

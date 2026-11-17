@@ -8,11 +8,11 @@
 **Gate:** validated, repeatable paid need.
 
 ## Phase 1 — Foundation
-- [ ] Flutter app scaffold: Android-first; stable package identifier decided before Play release.
-- [ ] Next.js approval portal skeleton.
+- [x] Flutter app scaffold: Android-first; provisional package identifier `com.scopeguard.mobile` (confirm before Play release).
+- [x] Next.js static approval portal skeleton (demo only; no live decisions).
 - [ ] Supabase local development setup; environment examples.
-- [ ] CI analysis/tests, dependency locking and secret scanning.
-- [ ] Design tokens in light/dark and reusable core components.
+- [x] CI analysis/tests and dependency locking. Secret scanning still pending.
+- [x] Design tokens in light/dark and initial reusable theme configuration.
 - [ ] Versioned, reviewed database migrations + RLS tests.
 **Gate:** clean local build and tenant isolation verified.
 

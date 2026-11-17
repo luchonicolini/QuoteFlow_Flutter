@@ -1,85 +1,78 @@
 # ScopeGuard
 
-**Every change has value. Agree before you work.**
+**Cada cambio tiene valor. Acordalo antes de trabajar.**
 
-ScopeGuard is an **Android-first** product for independent professionals to document an agreed project scope, propose paid changes and request a client's approval through a simple mobile-friendly web link. Clients do not need to install an app.
+ScopeGuard es un producto Android-first para profesionales independientes: documenta el alcance acordado y prepara propuestas para cambios de trabajo. El cliente podrá revisar una propuesta desde un enlace web sin instalar una app.
 
-> **Project status: discovery and implementation planning.** This repository currently contains product and engineering specifications. No Flutter application, deployed backend, approval system, payments or security controls are claimed as implemented yet.
+> **Estado de implementación:** primera base técnica. La app Flutter y la maqueta web son locales y demostrativas. No hay cuentas, persistencia, envío de enlaces, backend ni aprobaciones reales.
 
-## Product principles
-
-1. **One core job:** turn an out-of-scope request into an explicit proposal that a client can accept or decline.
-2. **WhatsApp-friendly, not WhatsApp-dependent:** the professional explicitly shares a message and link using the Android share sheet. No chat scraping or automated outreach.
-3. **Client without an account:** mobile-first web review of a single proposal.
-4. **Trust through precision:** submitted proposals have immutable versions; accepted terms must be preserved verbatim in an audit snapshot.
-5. **Privacy by design:** private project data, minimum personal information, expiring/revocable capability links, server-side authorization.
-6. **Validation first:** confirm willingness to pay before investing in automation, AI, advanced billing or a CRM.
-
-## The ideal customer
-
-Initial hypothesis: solo web designers, developers and creative freelancers who agree a fixed scope and receive extra requests through messaging apps. Test with real users before broadening to agencies, contractors or other verticals.
-
-## MVP journey
-
-1. Sign up / sign in as a professional.
-2. Create a client and project with currency, baseline fee, deliverables, exclusions and revision limits.
-3. Create a change request: description, fixed additional amount, expected schedule impact and optional expiry date.
-4. Publish a numbered, read-only proposal version; generate a private client link.
-5. Share a human-approved message through Android's native share functionality.
-6. Client opens the link, views the exact proposal and accepts or rejects explicitly.
-7. Professional sees the result; the server retains an append-only event and an immutable approved snapshot.
-8. Any later revision creates a new version requiring new approval.
-
-## Initial technology choices
-
-- **Professional app:** Flutter/Dart, Android-first; Material 3, Riverpod, go_router.
-- **Client portal:** Next.js mobile-first web UI.
-- **Backend:** Supabase Postgres, Auth, Row Level Security and Edge Functions for privileged actions.
-- **Design:** Lime & Graphite in light and dark modes; design tokens in [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md).
-- **Monetization:** pricing experiments only, not implemented; evaluate subscription vs pay-per-use and Google Play payments policy before releasing.
-- **Languages:** Spanish-first UX; localization-ready architecture.
-
-## Documentation
-
-- [Product brief and requirements](docs/PRODUCT.md)
-- [User journeys and acceptance criteria](docs/USER_STORIES.md)
-- [System architecture and security](docs/ARCHITECTURE.md)
-- [Data model and state machine](docs/DATA_MODEL.md)
-- [Design system: Lime & Graphite](docs/DESIGN_SYSTEM.md)
-- [Milestones and validation gates](docs/ROADMAP.md)
-- [Engineering standards and agent instructions](AGENTS.md)
-- [Flutter libraries and installed agent skills](docs/FLUTTER_TOOLKIT.md)
-- [Implementation handoff for coding agents](docs/IMPLEMENTATION_BRIEF.md)
-- [Research and validation plan](docs/VALIDATION.md)
-
-## Proposed repository layout
+## Estructura
 
 ```text
-QuoteFlow_Flutter/           # Temporary GitHub repository name
-├── README.md
-├── AGENTS.md
-├── docs/
-├── apps/
-│   ├── mobile/             # Flutter; created in implementation phase
-│   └── approval-web/       # Next.js; created in implementation phase
-├── supabase/
-│   ├── migrations/         # Versioned SQL migrations
-│   └── functions/          # Secure approval endpoints
-└── .github/workflows/      # CI once runnable apps exist
+apps/
+  mobile/          Flutter para Android (Riverpod, go_router, Material 3)
+  approval-web/    Next.js con vista estática de propuesta de demostración
+docs/              Requisitos, arquitectura, modelo y guía de diseño
+supabase/          Reservado para migraciones y funciones en una etapa posterior
 ```
 
-Do not interpret the proposed paths as existing executable code.
+## Requisitos locales
 
-## Development order
+- Flutter/Dart compatibles con el constraint de `apps/mobile/pubspec.yaml`.
+- Node.js 22 o posterior y npm.
+- Android Studio/emulador para ejecutar la app Android.
 
-**Validation → design and threat model → Flutter skeleton → project/scope CRUD → versioned change requests → secure client approval portal → audit and tests → pilot → Google Play readiness.**
+## Ejecutar la app Android
 
-Current owner repository: [luchonicolini/QuoteFlow_Flutter](https://github.com/luchonicolini/QuoteFlow_Flutter). The repository can be renamed later without changing the product requirements.
+```bash
+cd apps/mobile
+flutter pub get
+flutter run
+```
 
-## Not in MVP
+La app incluye navegación inicial entre Inicio, Proyectos, Solicitudes y Perfil, tema claro/oscuro según el dispositivo y estados vacíos. Las secciones de proyectos y solicitudes todavía no guardan datos.
 
-Automatic WhatsApp messaging, accounting or tax invoices, Stripe or Mercado Pago collection, AI extraction of private chats, team collaboration, contract enforceability guarantees, and complex CRM dashboards.
+## Ejecutar el portal de demostración
 
-## Safety note
+```bash
+npm ci
+npm run web:dev
+```
 
-A link-based acceptance is evidence of an interaction, **not** proof of the customer's legal identity or guaranteed legal enforceability. Identity assurance and applicable law require separate assessment.
+Abrí `http://localhost:3000`. La página contiene datos ficticios, está marcada como demostración y los botones de decisión están deshabilitados. **No sirve para aprobar propuestas.**
+
+## Verificaciones
+
+```bash
+cd apps/mobile
+dart format lib test
+flutter analyze
+flutter test
+flutter build apk --debug
+```
+
+Desde la raíz:
+
+```bash
+npm run web:lint
+npm run web:build
+```
+
+## Seguridad y alcance
+
+- No hay secretos ni credenciales reales en el repositorio.
+- No hay claves Supabase, políticas RLS, autenticación o endpoints todavía.
+- El portal no registra eventos ni procesa tokens.
+- La respuesta a una propuesta no representa un pago, una firma legal ni una verificación de identidad.
+- WhatsApp, cuando se implemente, se abrirá mediante la hoja nativa de compartir del dispositivo y bajo acción del profesional.
+
+## Próximas etapas
+
+1. Validar las hipótesis de producto mediante entrevistas y prototipo.
+2. Completar los diseños de referencia de Home en claro/oscuro y revisarlos con el propietario.
+3. Incorporar pruebas, autenticación y persistencia local Supabase con aislamiento RLS.
+4. Añadir clientes/proyectos y alcance base.
+5. Crear versiones inmutables de solicitudes y compartir manualmente.
+6. Implementar aprobación web transaccional segura con expiración, revocación y auditoría.
+
+Seguí [docs/ROADMAP.md](docs/ROADMAP.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) y [docs/PRODUCT_DESIGN_QUALITY.md](docs/PRODUCT_DESIGN_QUALITY.md) antes de ampliar el alcance.

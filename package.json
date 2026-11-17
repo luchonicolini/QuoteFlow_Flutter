@@ -1,0 +1,12 @@
+{
+  "name": "scopeguard",
+  "private": true,
+  "workspaces": [
+    "apps/approval-web"
+  ],
+  "scripts": {
+    "web:dev": "npm --workspace apps/approval-web run dev",
+    "web:build": "npm --workspace apps/approval-web run build",
+    "web:lint": "npm --workspace apps/approval-web run lint"
+  }
+}
